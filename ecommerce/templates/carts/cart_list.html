@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title%} Cart {% endblock %}
+
+{% block content %}
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+{% for item in cart %}
+    <tr>
+
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ item.products.title }}</td>
+      <td>{{item.total}}</td>
+      <td>quantity</td>
+      <td>Delete_Icon</td>
+
+    </tr>
+ {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

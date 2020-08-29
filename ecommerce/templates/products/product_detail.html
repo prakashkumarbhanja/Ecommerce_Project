@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title%} ProductDetail {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/product_detail.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page-header"><h3>{{ object.title}}</h3></div><hr>
+<div class="row my-2">
+    <div class="col-sm-4">
+        <b>Rs :<i>{{ object.sale_price}}</i></b><br>
+        {% for prodimage in object.productimage_set.all %}
+
+        <div class="card" style="width: 18rem;">
+          <img style="width:280px;
+             height:260px; background-position:center;" class="img-responsive zoom" src="/media/{{MEDIA_URL}}{{prodimage.image}}">
+        </div>
+        <br>
+        <a href="" class="btn btn-primary mx-2 addtocart">Addtocart</a>
+        <a href="#" class="btn btn-danger mx-3 wishlist">Add To WishList</a>
+
+
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-6 my-3">
+        {{ object.description|linebreaks}}
+    </div>
+
+</div>
+{% endblock %}

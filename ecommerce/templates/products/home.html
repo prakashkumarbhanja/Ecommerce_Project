@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title%} Home {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+ {% block js %}
+        <script src="{% static 'js/home.js' %}"></script>
+    {% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for product in products %}
+    <div class="col-sm-4 my-2">
+        <div class="card" style="width: 18rem;">
+            {% for item in product.productimage_set.all %}
+          <img class="card-img-top image-responsive zoom" style="width:285px;
+             height:200px; background-position:center;" id="{{product.id}}" src="media/{{MEDIA_URL}}{{item.image}}" alt="Card image cap">
+            {% endfor %}
+          <div class="card-body">
+            <h5 class="card-title">{{product.title}}</h5>
+            <p class="card-text">{{product.description|truncatewords:10}}<a style="color:red;" href="{{ product.get_absolute_url }}">readmore</a></p>
+            <a href="{% url 'add_to_cart' product.slug %}" id="{{ product.id }}" class="btn btn-primary addtocart">Addtocart</a>
+            <a href="{{ product.get_absolute_url }}" class="btn btn-warning view mx-2">View</a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

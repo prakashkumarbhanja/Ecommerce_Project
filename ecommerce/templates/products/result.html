@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{% block title%} Searched Item {% endblock %}
+
+{% block content %}
+<b>You are searching of :{{q}}</b> <hr>
+{% for product in products%}
+{{product.title}}<br>
+rs :{{product.sale_price}}
+
+{% for img in product.productimage_set.all %}
+<img class="card-img-top image-responsive" style="width:285px;
+             height:200px; background-position:center;" src="media/{{MEDIA_URL}}{{img.image}}">
+{% endfor %}
+
+{% endfor %}
+{% endblock %}
